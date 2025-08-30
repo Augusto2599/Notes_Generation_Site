@@ -1,0 +1,66 @@
+/* Conteúdo Principal */
+.conteudo-principal {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+/* Topo do Body */
+.body-topo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    background-color: white;
+    padding: 15px 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.filtros {
+    display: flex;
+    gap: 15px;
+}
+
+.filtro-btn {
+    background-color: #f0f2f5;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s;
+}
+
+.filtro-btn:hover {
+    background-color: #e4e6eb;
+}
+
+.barra-pesquisa {
+    display: flex;
+    align-items: center;
+    background-color: #f0f2f5;
+    padding: 10px 15px;
+    border-radius: 20px;
+    width: 300px;
+}
+
+.barra-pesquisa input {
+    border: none;
+    background: transparent;
+    outline: none;
+    margin-left: 10px;
+    width: 100%;
+}
+
+/* Centro do Body */
+.body-center {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
