@@ -1,0 +1,87 @@
+/* Barra Lateral Direita */
+.barra-lateral {
+    width: 300px;
+    background-color: white;
+    padding: 20px;
+    box-shadow: -4px 0 6px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.topo-direito {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    width: 100%;
+}
+
+.icone-topo {
+    font-size: 20px;
+    cursor: pointer;
+    color: #777;
+    transition: color 0.3s;
+}
+
+.icone-topo:hover {
+    color: #3498db;
+}
+
+.perfil-usuario {
+    text-align: center;
+    margin-bottom: 30px;
+    width: 100%;
+}
+
+.usuario-grande {
+    width: 80px;
+    height: 80px;
+    background-color: #3498db;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+    margin: 0 auto 15px;
+}
+
+.nome-usuario {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.id-usuario {
+    color: #777;
+    font-size: 14px;
+}
+
+.amigos {
+    background-color: #f0f2f5;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    width: 100%;
+    text-align: center;
+}
+
+.amigos-titulo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.numero-amigos {
+    background-color: #3498db;
+    color: white;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 12px;
+}
