@@ -5,6 +5,7 @@
     margin-bottom: 20px;
     width: 100%;
     text-align: center;
+    margin-top: auto; /* Adicionado para empurrar para baixo */
 }
 
 .calendario-titulo {

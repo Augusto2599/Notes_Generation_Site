@@ -3,15 +3,19 @@
     flex: 1;
     display: flex;
     flex-direction: column;
-    padding: 20px;
+    padding: 20px 150px;
+    /* Alterado para adicionar preenchimento lateral */
     overflow-y: auto;
 }
 
 /* Topo do Body */
 .body-topo {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    /* Alterado de space-between para center */
     align-items: center;
+    gap: 20px;
+    /* Adicionado para criar um espaço entre os filtros e a pesquisa */
     margin-bottom: 30px;
     background-color: white;
     padding: 15px 20px;
