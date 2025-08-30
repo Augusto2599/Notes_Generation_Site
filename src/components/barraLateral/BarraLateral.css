@@ -1,30 +1,30 @@
 /* Barra Lateral Direita */
 .barra-lateral {
-    width: 350px;
+    width: 21.875rem; /* 350px / 16 */
     background-color: white;
-    padding: 20px;
-    box-shadow: -4px 0 6px rgba(0, 0, 0, 0.1);
+    padding: 1.25rem; /* 20px / 16 */
+    box-shadow: -0.25rem 0 0.375rem rgba(0, 0, 0, 0.1); /* -4px 0 6px */
     overflow-y: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
     
     /*-- Alterações --*/
-    max-height:1000px;  /* Define uma altura máxima (ajuste o valor como preferir) */
+    max-height: 100rem; /* 700px / 16 */
     margin-block: auto; /* Centraliza a barra verticalmente na página */
-    border-radius: 20px;/* Adiciona bordas arredondadas para um visual mais agradável */
+    border-radius: 1.25rem; /* 20px / 16 */
 }
 
 .topo-direito {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 30px;
+    margin-bottom: 1.25rem; /* 20px / 16 */
     width: 100%;
 }
 
 .icone-topo {
-    font-size: 20px;
+    font-size: 1.25rem; /* 20px / 16 */
     cursor: pointer;
     color: #777;
     transition: color 0.3s;
@@ -36,15 +36,15 @@
 
 .perfil-usuario {
     text-align: center;
-    margin-bottom: 20px; /* Reduzido de 30px */
+    margin-bottom: 1.25rem; /* 20px / 16 */
     width: 100%;
 }
 
 .usuario-grande {
-    width: 60px;        /* Reduzido de 80px */
-    height: 60px;       /* Reduzido de 80px */
-    font-size: 24px;      /* Reduzido de 30px */
-    margin: 0 auto 10px;  /* Margem inferior reduzida de 15px */
+    width: 3.75rem; /* 60px / 16 */       
+    height: 3.75rem; /* 60px / 16 */       
+    font-size: 1.5rem; /* 24px / 16 */
+    margin: 0 auto 0.625rem; /* 10px / 16 */
     background-color: #3498db;
     border-radius: 50%;
     display: flex;
@@ -57,19 +57,19 @@
 }
 
 .nome-usuario {
-    font-size: 16px; /* Reduzido de 18px */
-    margin-bottom: 3px; /* Reduzido de 5px */
+    font-size: 1rem; /* 16px / 16 */
+    margin-bottom: 0.1875rem; /* 3px / 16 */
 }
 
 .id-usuario {
-    font-size: 13px; /* Reduzido de 14px */
+    font-size: 0.8125rem; /* 13px / 16 */
 }
 
 .amigos {
     background-color: #f0f2f5;
-    padding: 12px;        /* Reduzido de 15px */
-    border-radius: 10px;
-    margin-bottom: 20px;  /* Reduzido de 30px */
+    padding: 0.75rem; /* 12px / 16 */
+    border-radius: 0.625rem; /* 10px / 16 */
+    margin-bottom: 1.25rem; /* 20px / 16 */
     width: 100%;
     text-align: center;
 }
@@ -78,15 +78,22 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
-    margin-bottom: 15px;
+    gap: 0.625rem; /* 10px / 16 */
+    margin-bottom: 0.9375rem; /* 15px / 16 */
     font-weight: 600;
 }
 
 .numero-amigos {
     background-color: #3498db;
     color: white;
-    padding: 2px 8px;
-    border-radius: 10px;
-    font-size: 12px;
+    padding: 0.125rem 0.5rem; /* 2px 8px */
+    border-radius: 0.625rem; /* 10px / 16 */
+    font-size: 0.75rem; /* 12px / 16 */
+}
+
+/* --- Media Query para Telas Menores --- */
+@media (max-width: 1200px) {
+    .barra-lateral {
+        display: none; /* Esconde a barra lateral */
+    }
 }

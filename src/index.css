@@ -5,6 +5,10 @@
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+html {
+  font-size: 80%; /* Define que 1rem será 80% do padrão (12.8px) */
+}
+
 body {
   background-color: #f5f7fb;
   color: #333;
