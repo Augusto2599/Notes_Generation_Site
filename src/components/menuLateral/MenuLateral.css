@@ -58,6 +58,24 @@
 /* --- Media Query para Telas Menores --- */
 @media (max-width: 1200px) {
     .menu-lateral {
-        display: none; /* Esconde o menu lateral */
+        position: fixed; /* 1. Posição fixa para flutuar sobre o conteúdo */
+        left: 0;
+        top: 0;
+        bottom: 0;
+        z-index: 1000; /* 2. Garante que fique na frente de outros elementos */
+        
+        /* 3. Move o menu para fora da tela, deixando uma "orelhinha" de 15px */
+        transform: translateX(calc(-100% + 15px)); 
+        
+        transition: transform 0.3s ease-in-out; /* 4. Adiciona uma animação suave */
+    }
+
+    /* 5. Quando o mouse passar por cima, o menu desliza para a tela */
+    .menu-lateral:hover {
+        transform: translateX(0);
+        /* As linhas abaixo garantem que o menu se expanda como antes */
+        width: 12.5rem; 
+        align-items: flex-start;
+        padding-left: 1.25rem;
     }
 }

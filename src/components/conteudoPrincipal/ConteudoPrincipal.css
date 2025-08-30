@@ -70,6 +70,10 @@
 /* --- Media Query para Telas Menores --- */
 @media (max-width: 1200px) {
     .conteudo-principal {
-        padding: 20px; /* Reduz o preenchimento lateral para telas pequenas */
+        /* Ajuste no padding:
+          - 1.25rem (20px) para cima e para baixo
+          - 2.5rem (40px) para a esquerda e direita
+        */
+        padding: 1.25rem 2.5rem; 
     }
 }

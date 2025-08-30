@@ -91,9 +91,29 @@
     font-size: 0.75rem; /* 12px / 16 */
 }
 
-/* --- Media Query para Telas Menores --- */
+/* --- Media Query para Telas Menores (VERSÃO CORRIGIDA) --- */
 @media (max-width: 1200px) {
     .barra-lateral {
-        display: none; /* Esconde a barra lateral */
+        /* 1. Posição fixa para flutuar */
+        position: fixed;
+        z-index: 1000; /* Garante que fique na frente */
+
+        /* 2. Lógica de posicionamento */
+        right: 0;
+        top: 50%; /* Posiciona o topo do elemento no meio da tela */
+        
+        /* 3. Animação suave */
+        transition: transform 0.3s ease-in-out;
+        
+        /* 4. Combina o movimento para fora da tela E a centralização vertical */
+        transform: translate(calc(100% - 15px), -50%);
+
+        /* Mantém o arredondamento da borda */
+        border-radius: 1.25rem 0 0 1.25rem;
+    }
+
+    /* 5. Ao passar o mouse, a barra desliza para a tela */
+    .barra-lateral:hover {
+        transform: translate(0, -50%);
     }
 }
