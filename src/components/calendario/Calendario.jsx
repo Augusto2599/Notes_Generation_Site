@@ -1,37 +1,66 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './Calendario.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCalendar } from '@fortawesome/free-solid-svg-icons';
+import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
 function Calendario() {
-    // 'useState' cria um estado para armazenar as informações da data
-    const [data, setData] = useState({
-        completa: '',
-        dia: '',
-        mesAno: '',
-    });
+    // Estado para controlar o mês e ano que estão sendo exibidos
+    const [dataExibida, setDataExibida] = useState(new Date());
 
-    // 'useEffect' executa o código depois que o componente é renderizado.
-    // O array vazio [] no final faz com que ele rode apenas uma vez.
-    useEffect(() => {
-        const dataAtual = new Date();
+    const hoje = new Date();
 
-        const completa = dataAtual.toLocaleDateString('pt-BR', { weekday: 'long', day: 'numeric', month: 'long' });
-        const dia = dataAtual.getDate();
-        const mesAno = dataAtual.toLocaleDateString('pt-BR', { month: 'long', year: 'numeric' });
+    // Funções para navegar para o mês anterior e o próximo
+    const irParaMesAnterior = () => {
+        setDataExibida(new Date(dataExibida.getFullYear(), dataExibida.getMonth() - 1, 1));
+    };
 
-        setData({ completa, dia, mesAno });
-    }, []);
+    const irParaProximoMes = () => {
+        setDataExibida(new Date(dataExibida.getFullYear(), dataExibida.getMonth() + 1, 1));
+    };
+
+    // Lógica para gerar os dias do calendário
+    const gerarDiasDoMes = () => {
+        const ano = dataExibida.getFullYear();
+        const mes = dataExibida.getMonth();
+
+        const primeiroDiaDoMes = new Date(ano, mes, 1).getDay();
+        const ultimoDiaDoMes = new Date(ano, mes + 1, 0).getDate();
+
+        const dias = [];
+
+        // Adiciona células vazias para os dias antes do início do mês
+        for (let i = 0; i < primeiroDiaDoMes; i++) {
+            dias.push(<div key={`vazio-${i}`} className="dia-vazio"></div>);
+        }
+
+        // Adiciona os dias do mês
+        for (let dia = 1; dia <= ultimoDiaDoMes; dia++) {
+            const ehHoje = dia === hoje.getDate() && mes === hoje.getMonth() && ano === hoje.getFullYear();
+            dias.push(
+                <div key={dia} className={`dia ${ehHoje ? 'dia-atual' : ''}`}>
+                    {dia}
+                </div>
+            );
+        }
+
+        return dias;
+    };
+
+    const nomeDoMes = dataExibida.toLocaleDateString('pt-BR', { month: 'long', year: 'numeric' });
 
     return (
         <div className="calendario">
-            <div className="calendario-titulo">
-                <FontAwesomeIcon icon={faCalendar} />
-                <span>Calendário</span>
+            <div className="calendario-header">
+                <button onClick={irParaMesAnterior} className="btn-nav"><FontAwesomeIcon icon={faChevronLeft} /></button>
+                <div className="mes-ano-titulo">{nomeDoMes}</div>
+                <button onClick={irParaProximoMes} className="btn-nav"><FontAwesomeIcon icon={faChevronRight} /></button>
             </div>
-            <div className="data-atual">{data.completa}</div>
-            <div className="dia-atual">{data.dia}</div>
-            <div className="mes-ano">{data.mesAno}</div>
+            <div className="dias-semana">
+                <div>D</div><div>S</div><div>T</div><div>Q</div><div>Q</div><div>S</div><div>S</div>
+            </div>
+            <div className="calendario-grid">
+                {gerarDiasDoMes()}
+            </div>
         </div>
     );
 }

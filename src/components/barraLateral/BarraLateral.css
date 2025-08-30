@@ -1,7 +1,6 @@
 /* Barra Lateral Direita */
 .barra-lateral {
-    width: 400px;
-    /* Alterado de 300px para 350px (ou o valor que desejar) */
+    width: 350px;
     background-color: white;
     padding: 20px;
     box-shadow: -4px 0 6px rgba(0, 0, 0, 0.1);
@@ -9,6 +8,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    
+    /*-- Alterações --*/
+    max-height:1000px;  /* Define uma altura máxima (ajuste o valor como preferir) */
+    margin-block: auto; /* Centraliza a barra verticalmente na página */
+    border-radius: 20px;/* Adiciona bordas arredondadas para um visual mais agradável */
 }
 
 .topo-direito {
@@ -32,13 +36,15 @@
 
 .perfil-usuario {
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 20px; /* Reduzido de 30px */
     width: 100%;
 }
 
 .usuario-grande {
-    width: 80px;
-    height: 80px;
+    width: 60px;        /* Reduzido de 80px */
+    height: 60px;       /* Reduzido de 80px */
+    font-size: 24px;      /* Reduzido de 30px */
+    margin: 0 auto 10px;  /* Margem inferior reduzida de 15px */
     background-color: #3498db;
     border-radius: 50%;
     display: flex;
@@ -51,21 +57,19 @@
 }
 
 .nome-usuario {
-    font-size: 18px;
-    font-weight: 600;
-    margin-bottom: 5px;
+    font-size: 16px; /* Reduzido de 18px */
+    margin-bottom: 3px; /* Reduzido de 5px */
 }
 
 .id-usuario {
-    color: #777;
-    font-size: 14px;
+    font-size: 13px; /* Reduzido de 14px */
 }
 
 .amigos {
     background-color: #f0f2f5;
-    padding: 15px;
+    padding: 12px;        /* Reduzido de 15px */
     border-radius: 10px;
-    margin-bottom: 30px;
+    margin-bottom: 20px;  /* Reduzido de 30px */
     width: 100%;
     text-align: center;
 }
