@@ -1,0 +1,25 @@
+.atividade {
+    background-color: #f0f2f5;
+    padding: 15px;
+    border-radius: 10px;
+    width: 100%;
+}
+
+.atividade-titulo {
+    font-weight: 600;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.tempo-uso {
+    font-size: 24px;
+    font-weight: 700;
+    color: #2c3e50;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.grafico-container {
+    height: 150px;
+    margin-top: 15px;
+}
