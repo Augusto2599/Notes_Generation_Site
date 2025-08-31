@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Calendar from '../Calendar/Calendar';
 import ActivityChart from '../ActivityChart/ActivityChart';
 import PopupMenu from '../PopupMenu/PopupMenu';
+import SettingsPopupContent from '../SettingsPopupContent/SettingsPopupContent'; // Importar novo componente
 import './SideBar.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBell, faCog, faUserFriends } from '@fortawesome/free-solid-svg-icons';
@@ -20,6 +21,7 @@ function SideBar() {
     return (
         <>
             <div className="side-bar">
+                {/* ... (código da SideBar não muda) ... */}
                 <div className="header-actions">
                     <FontAwesomeIcon
                         icon={faBell}
@@ -32,7 +34,7 @@ function SideBar() {
                         onClick={() => handleIconClick('settings')}
                     />
                 </div>
-
+                {/* ... (resto do código da SideBar) ... */}
                 <div className="user-profile">
                     <div className="user-avatar">U</div>
                     <div className="user-name">Usuário Exemplo</div>
@@ -60,13 +62,9 @@ function SideBar() {
             )}
 
             {activePopup === 'settings' && (
-                <PopupMenu title="Configurações" onClose={handleClosePopup} size="medium">
-                    <ul>
-                        <li>Editar Perfil</li>
-                        <li>Privacidade</li>
-                        <li>Preferências de Tema</li>
-                        <li>Sair</li>
-                    </ul>
+                // Usar o novo componente e o novo tamanho 'large'
+                <PopupMenu title="Configurações" onClose={handleClosePopup} size="large">
+                    <SettingsPopupContent />
                 </PopupMenu>
             )}
         </>
