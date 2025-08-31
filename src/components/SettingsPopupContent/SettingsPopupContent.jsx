@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import './SettingsPopupContent.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGoogle, faApple, faFacebookF } from '@fortawesome/free-brands-svg-icons';
@@ -17,25 +17,9 @@ function ToggleSwitch({ label, isEnabled, onToggle }) {
     );
 }
 
-function SettingsPopupContent() {
-    const [settings, setSettings] = useState({
-        name: '',
-        email: '',
-        nickname: 'Usuário Exemplo',
-        avatar: null, // Vai armazenar a imagem em Base64 (Data URL)
-        isProfilePrivate: false,
-        areNotesPublic: true,
-    });
-
+function SettingsPopupContent({ currentSettings, onSave }) {
+    const [settings, setSettings] = useState(currentSettings);
     const fileInputRef = useRef(null);
-
-    // Efeito para carregar as configurações salvas quando o componente é montado
-    useEffect(() => {
-        const savedSettings = localStorage.getItem('userSettings');
-        if (savedSettings) {
-            setSettings(JSON.parse(savedSettings));
-        }
-    }, []);
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -64,9 +48,9 @@ function SettingsPopupContent() {
         }
     };
 
+    // A função de salvar agora chama a prop 'onSave' vinda da SideBar
     const handleSave = () => {
-        localStorage.setItem('userSettings', JSON.stringify(settings));
-        alert("Configurações salvas com sucesso!");
+        onSave(settings);
     };
 
     return (

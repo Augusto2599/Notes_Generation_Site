@@ -13,6 +13,7 @@ import { faHeart, faCalendar, faSearch, faUser, faTimes } from '@fortawesome/fre
 const INITIAL_CARDS_DATA = [
     {
         id: 1,
+        userId: 2, // ID de outro usuário
         title: 'Ideias para Projeto',
         userInitial: 'J',
         text: 'Desenvolver um sistema de notas com funcionalidades de compartilhamento e colaboração em tempo real.',
@@ -22,6 +23,7 @@ const INITIAL_CARDS_DATA = [
     },
     {
         id: 2,
+        userId: 3, // ID de outro usuário
         title: 'Lista de Tarefas',
         userInitial: 'M',
         text: '- Finalizar relatório<br>- Reunião com equipe às 14h<br>- Revisar documentação',
@@ -31,6 +33,7 @@ const INITIAL_CARDS_DATA = [
     },
     {
         id: 3,
+        userId: 4, // ID de outro usuário
         title: 'Reunião Importante',
         userInitial: 'A',
         text: 'Discutir as novas funcionalidades do sistema e definir prazos para a próxima sprint de desenvolvimento.',
@@ -38,9 +41,19 @@ const INITIAL_CARDS_DATA = [
         liked: false,
         color: '#ffffff'
     },
+    {
+        id: 4,
+        userId: 123456, // ID do usuário logado (correspondente ao da SideBar)
+        title: 'Minha Anotação Pessoal',
+        userInitial: 'U', // Inicial padrão, será substituída pelo avatar
+        text: 'Esta é uma nota pessoal e deve mostrar meu avatar customizado.',
+        dateInfo: '31/08/2025 16:30',
+        liked: false,
+        color: '#c8e6c9'
+    }
 ];
 
-function MainContent() {
+function MainContent({ settings }) {
     const [cards, setCards] = useState(INITIAL_CARDS_DATA);
     const [displayedCards, setDisplayedCards] = useState(INITIAL_CARDS_DATA);
     const [showCalendar, setShowCalendar] = useState(false);
@@ -155,16 +168,20 @@ function MainContent() {
             </div>
 
             <div className="content-center">
-                {displayedCards.map(card => (
-                    <Card
-                        key={card.id}
-                        data={card}
-                        onLike={handleLike}
-                        onDelete={handleDeleteRequest}
-                        onEdit={(note) => setEditingNote(note)}
-                        onShare={(note) => setSharingNote(note)}
-                    />
-                ))}
+                {displayedCards.map(card => {
+                    const isCurrentUser = card.userId === 123456;
+                    return (
+                        <Card
+                            key={card.id}
+                            data={card}
+                            onLike={handleLike}
+                            onDelete={handleDeleteRequest}
+                            onEdit={(note) => setEditingNote(note)}
+                            onShare={(note) => setSharingNote(note)}
+                            currentUserAvatar={isCurrentUser ? settings.avatar : null}
+                        />
+                    );
+                })}
             </div>
 
             {editingNote && (
