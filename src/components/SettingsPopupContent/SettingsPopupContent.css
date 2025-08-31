@@ -1,6 +1,7 @@
 .settings-container {
     display: flex;
-    gap: 2.5rem; /* 40px */
+    gap: 2.5rem;
+    /* 40px */
 }
 
 .settings-column {
@@ -11,7 +12,8 @@
 
 /* --- Lado Esquerdo --- */
 .settings-left {
-    gap: 1.25rem; /* 20px */
+    gap: 1.25rem;
+    /* 20px */
 }
 
 .form-group {
@@ -20,17 +22,22 @@
 }
 
 .form-group label {
-    margin-bottom: 0.5rem; /* 8px */
-    font-size: 0.875rem; /* 14px */
+    margin-bottom: 0.5rem;
+    /* 8px */
+    font-size: 0.875rem;
+    /* 14px */
     font-weight: 500;
     color: #555;
 }
 
 .form-group input {
-    padding: 0.75rem; /* 12px */
+    padding: 0.75rem;
+    /* 12px */
     border: 1px solid #ccc;
-    border-radius: 0.5rem; /* 8px */
-    font-size: 0.9375rem; /* 15px */
+    border-radius: 0.5rem;
+    /* 8px */
+    font-size: 0.9375rem;
+    /* 15px */
     outline-color: #3498db;
 }
 
@@ -42,18 +49,22 @@
 .social-icons {
     display: flex;
     gap: 1rem;
-    margin-top: 0.625rem; /* 10px */
+    margin-top: 0.625rem;
+    /* 10px */
 }
 
 .social-icon {
-    font-size: 1.75rem; /* 28px */
-    color: #d0d0d0; /* Cor esmaecida */
+    font-size: 1.75rem;
+    /* 28px */
+    color: #d0d0d0;
+    /* Cor esmaecida */
     cursor: pointer;
     transition: color 0.3s;
 }
 
 .social-icon.connected {
-    color: #4285F4; /* Cor do Google */
+    color: #4285F4;
+    /* Cor do Google */
 }
 
 .social-icon:not(.connected):hover {
@@ -77,8 +88,10 @@
 .toggle-switch {
     position: relative;
     display: inline-block;
-    width: 3rem; /* 48px */
-    height: 1.625rem; /* 26px */
+    width: 3rem;
+    /* 48px */
+    height: 1.625rem;
+    /* 26px */
 }
 
 .toggle-switch input {
@@ -102,21 +115,26 @@
 .slider:before {
     position: absolute;
     content: "";
-    height: 1.25rem; /* 20px */
-    width: 1.25rem; /* 20px */
-    left: 0.1875rem; /* 3px */
-    bottom: 0.1875rem; /* 3px */
+    height: 1.25rem;
+    /* 20px */
+    width: 1.25rem;
+    /* 20px */
+    left: 0.1875rem;
+    /* 3px */
+    bottom: 0.1875rem;
+    /* 3px */
     background-color: white;
     border-radius: 50%;
     transition: 0.4s;
 }
 
-input:checked + .slider {
+input:checked+.slider {
     background-color: #2196F3;
 }
 
-input:checked + .slider:before {
-    transform: translateX(1.375rem); /* 22px */
+input:checked+.slider:before {
+    transform: translateX(1.375rem);
+    /* 22px */
 }
 
 /* --- Lado Direito --- */
@@ -126,9 +144,12 @@ input:checked + .slider:before {
 }
 
 .user-avatar-large {
-    width: 7.5rem; /* 120px */
-    height: 7.5rem; /* 120px */
-    font-size: 3rem; /* 48px */
+    width: 7.5rem;
+    /* 120px */
+    height: 7.5rem;
+    /* 120px */
+    font-size: 3rem;
+    /* 48px */
     background-color: #3498db;
     border-radius: 50%;
     color: white;
@@ -137,11 +158,69 @@ input:checked + .slider:before {
     justify-content: center;
     font-weight: bold;
     margin-bottom: 1rem;
+    cursor: pointer;
+    /* Adicionado para indicar que é clicável */
+    background-position: center;
+    /* Adicionado para centralizar a imagem */
+    border: 3px solid #fff;
+    /* Adicionado para destacar o avatar */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* Adicionado para profundidade */
+    transition: transform 0.2s;
 }
 
-.user-nickname {
+/* --- Lado Direito --- */
+.settings-right {
+    align-items: center;
+    text-align: center;
+}
+
+.user-avatar-large {
+    width: 7.5rem;
+    /* 120px */
+    height: 7.5rem;
+    /* 120px */
+    font-size: 3rem;
+    /* 48px */
+    background-color: #3498db;
+    border-radius: 50%;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    /* Adicionado para indicar que é clicável */
+    background-position: center;
+    /* Adicionado para centralizar a imagem */
+    border: 3px solid #fff;
+    /* Adicionado para destacar o avatar */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* Adicionado para profundidade */
+    transition: transform 0.2s;
+}
+
+.user-avatar-large:hover {
+    transform: scale(1.05);
+    /* Efeito de hover */
+    filter: brightness(95%);
+}
+
+.settings-right .form-group {
+    width: 100%;
+    margin-bottom: 0.5rem;
+}
+
+.nickname-input {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 0.5rem;
     font-size: 1.25rem;
     font-weight: 600;
+    text-align: center;
+    outline-color: #3498db;
 }
 
 .user-info-id {
@@ -156,11 +235,13 @@ input:checked + .slider:before {
     font-weight: bold;
     font-size: 0.8125rem;
     color: white;
-    margin-bottom: auto; /* Empurra os botões para baixo */
+    margin-bottom: auto;
+    /* Empurra os botões para baixo */
 }
 
 .account-type-badge.premium {
-    background: linear-gradient(45deg, #FFD700, #F0B400); /* Dourado */
+    background: linear-gradient(45deg, #FFD700, #F0B400);
+    /* Dourado */
 }
 
 .account-type-badge.free {
@@ -176,7 +257,8 @@ input:checked + .slider:before {
 
 .btn {
     width: 100%;
-    padding: 0.875rem; /* 14px */
+    padding: 0.875rem;
+    /* 14px */
     border: none;
     border-radius: 0.5rem;
     font-size: 1rem;
@@ -189,6 +271,7 @@ input:checked + .slider:before {
     background-color: #3498db;
     color: white;
 }
+
 .btn-save:hover {
     background-color: #2980b9;
 }
@@ -197,6 +280,7 @@ input:checked + .slider:before {
     background-color: #f1f1f1;
     color: #e74c3c;
 }
+
 .btn-delete:hover {
     background-color: #e74c3c;
     color: white;

@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './SettingsPopupContent.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGoogle, faApple, faFacebookF } from '@fortawesome/free-brands-svg-icons';
+
 
 // Componente para o Toggle Switch
 function ToggleSwitch({ label, isEnabled, onToggle }) {
@@ -17,21 +18,82 @@ function ToggleSwitch({ label, isEnabled, onToggle }) {
 }
 
 function SettingsPopupContent() {
-    // Exemplo de estado para os toggles
-    const [isProfilePrivate, setProfilePrivate] = React.useState(false);
-    const [areNotesPublic, setNotesPublic] = React.useState(true);
+    const [settings, setSettings] = useState({
+        name: '',
+        email: '',
+        nickname: 'Usuário Exemplo',
+        avatar: null, // Vai armazenar a imagem em Base64 (Data URL)
+        isProfilePrivate: false,
+        areNotesPublic: true,
+    });
+
+    const fileInputRef = useRef(null);
+
+    // Efeito para carregar as configurações salvas quando o componente é montado
+    useEffect(() => {
+        const savedSettings = localStorage.getItem('userSettings');
+        if (savedSettings) {
+            setSettings(JSON.parse(savedSettings));
+        }
+    }, []);
+
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setSettings(prev => ({ ...prev, [name]: value }));
+    };
+
+    const handleToggleChange = (name) => {
+        setSettings(prev => ({ ...prev, [name]: !prev[name] }));
+    };
+
+    const handleAvatarClick = () => {
+        fileInputRef.current.click();
+    };
+
+    const handleAvatarChange = (e) => {
+        const file = e.target.files[0];
+        if (file && (file.type === 'image/jpeg' || file.type === 'image/png')) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                // Converte a imagem para Data URL (Base64) para salvar no localStorage
+                setSettings(prev => ({ ...prev, avatar: reader.result }));
+            };
+            reader.readAsDataURL(file);
+        } else {
+            alert("Por favor, selecione um arquivo de imagem (JPEG ou PNG).");
+        }
+    };
+
+    const handleSave = () => {
+        localStorage.setItem('userSettings', JSON.stringify(settings));
+        alert("Configurações salvas com sucesso!");
+    };
 
     return (
         <div className="settings-container">
             {/* LADO ESQUERDO */}
             <div className="settings-column settings-left">
                 <div className="form-group">
-                    <label htmlFor="name">Nome</label>
-                    <input type="text" id="name" defaultValue="Usuário Exemplo" />
+                    <label htmlFor="name">Nome Completo</label>
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        value={settings.name}
+                        onChange={handleInputChange}
+                        placeholder="Digite seu nome completo"
+                    />
                 </div>
                 <div className="form-group">
                     <label htmlFor="email">Email</label>
-                    <input type="email" id="email" defaultValue="usuario@exemplo.com" />
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        value={settings.email}
+                        onChange={handleInputChange}
+                        placeholder="seuemail@exemplo.com"
+                    />
                 </div>
                 <div className="form-group">
                     <label htmlFor="password">Nova Senha</label>
@@ -50,30 +112,52 @@ function SettingsPopupContent() {
                         <FontAwesomeIcon icon={faFacebookF} className="social-icon" title="Conectar com Facebook" />
                     </div>
                 </div>
-
                 <div className="settings-toggles">
                     <ToggleSwitch
                         label="Perfil Privado"
-                        isEnabled={isProfilePrivate}
-                        onToggle={() => setProfilePrivate(!isProfilePrivate)}
+                        isEnabled={settings.isProfilePrivate}
+                        onToggle={() => handleToggleChange('isProfilePrivate')}
                     />
                     <ToggleSwitch
                         label="Mostrar notas na comunidade"
-                        isEnabled={areNotesPublic}
-                        onToggle={() => setNotesPublic(!areNotesPublic)}
+                        isEnabled={settings.areNotesPublic}
+                        onToggle={() => handleToggleChange('areNotesPublic')}
                     />
                 </div>
             </div>
 
             {/* LADO DIREITO */}
             <div className="settings-column settings-right">
-                <div className="user-avatar-large">U</div>
-                <div className="user-nickname">Usuário Exemplo</div>
+                <input
+                    type="file"
+                    ref={fileInputRef}
+                    onChange={handleAvatarChange}
+                    style={{ display: 'none' }}
+                    accept="image/png, image/jpeg"
+                />
+                <div
+                    className="user-avatar-large"
+                    onClick={handleAvatarClick}
+                    style={{ backgroundImage: `url(${settings.avatar})`, backgroundSize: 'cover' }}
+                >
+                    {!settings.avatar && settings.nickname.charAt(0).toUpperCase()}
+                </div>
+                <div className="form-group">
+                    <label htmlFor="nickname">Nickname</label>
+                    <input
+                        type="text"
+                        id="nickname"
+                        name="nickname"
+                        className="nickname-input"
+                        value={settings.nickname}
+                        onChange={handleInputChange}
+                    />
+                </div>
                 <div className="user-info-id">ID: #123456</div>
                 <div className="account-type-badge premium">Premium</div>
 
                 <div className="action-buttons">
-                    <button className="btn btn-save">Salvar Alterações</button>
+                    <button className="btn btn-save" onClick={handleSave}>Salvar Alterações</button>
                     <button className="btn btn-delete">Deletar Conta</button>
                 </div>
             </div>
