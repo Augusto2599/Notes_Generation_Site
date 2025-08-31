@@ -33,7 +33,7 @@ Para executar este projeto localmente, siga os passos abaixo:
 
 1.  **Clone o repositório:**
     ```bash
-    git clone <URL_DO_SEU_REPOSITORIO>
+    git clone <https://github.com/Augusto2599/Notes_Generation_Site.git>
     ```
 
 2.  **Navegue até o diretório do projeto:**
