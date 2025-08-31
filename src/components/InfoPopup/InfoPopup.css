@@ -1,0 +1,41 @@
+.info-popup {
+    text-align: center;
+    padding: 1rem;
+}
+
+.info-icon {
+    font-size: 2.5rem;
+    color: #28a745; /* Verde para sucesso */
+    margin-bottom: 1rem;
+}
+
+.info-message {
+    font-size: 1.125rem;
+    color: #333;
+    margin-bottom: 1.5rem;
+}
+
+.info-popup .popup-actions {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.info-popup .btn {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    min-width: 100px;
+}
+
+.info-popup .btn-ok {
+    background-color: #3498db;
+    color: white;
+}
+.info-popup .btn-ok:hover {
+    background-color: #2980b9;
+}

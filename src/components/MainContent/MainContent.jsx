@@ -1,17 +1,24 @@
 import React, { useState } from 'react';
 import Card from '../card/Card';
 import Calendar from '../Calendar/Calendar';
+import PopupMenu from '../PopupMenu/PopupMenu';
+import EditNotePopup from '../EditNotePopup/EditNotePopup';
+import SharePopup from '../SharePopup/SharePopup';
+import ConfirmPopup from '../ConfirmPopup/ConfirmPopup';
+import InfoPopup from '../InfoPopup/InfoPopup';
 import './MainContent.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart, faCalendar, faSearch, faUser, faTimes } from '@fortawesome/free-solid-svg-icons';
 
-const CARDS_DATA = [
+const INITIAL_CARDS_DATA = [
     {
         id: 1,
         title: 'Ideias para Projeto',
         userInitial: 'J',
         text: 'Desenvolver um sistema de notas com funcionalidades de compartilhamento e colaboração em tempo real.',
         dateInfo: '15/08/2023 10:30',
+        liked: false,
+        color: '#b3e5fc'
     },
     {
         id: 2,
@@ -19,6 +26,8 @@ const CARDS_DATA = [
         userInitial: 'M',
         text: '- Finalizar relatório<br>- Reunião com equipe às 14h<br>- Revisar documentação',
         dateInfo: '14/08/2023 16:45',
+        liked: true,
+        color: '#ffccd5'
     },
     {
         id: 3,
@@ -26,13 +35,55 @@ const CARDS_DATA = [
         userInitial: 'A',
         text: 'Discutir as novas funcionalidades do sistema e definir prazos para a próxima sprint de desenvolvimento.',
         dateInfo: '13/08/2023 09:15',
+        liked: false,
+        color: '#ffffff'
     },
 ];
 
 function MainContent() {
-    const [displayedCards, setDisplayedCards] = useState(CARDS_DATA);
+    const [cards, setCards] = useState(INITIAL_CARDS_DATA);
+    const [displayedCards, setDisplayedCards] = useState(INITIAL_CARDS_DATA);
     const [showCalendar, setShowCalendar] = useState(false);
     const [selectedDate, setSelectedDate] = useState(null);
+    const [editingNote, setEditingNote] = useState(null);
+    const [sharingNote, setSharingNote] = useState(null);
+    const [deletingNoteId, setDeletingNoteId] = useState(null);
+    const [shareSuccessMessage, setShareSuccessMessage] = useState('');
+
+    const handleLike = (cardId) => {
+        const updatedCards = cards.map(card =>
+            card.id === cardId ? { ...card, liked: !card.liked } : card
+        );
+        setCards(updatedCards);
+        setDisplayedCards(updatedCards);
+    };
+
+    const handleDeleteRequest = (cardId) => {
+        setDeletingNoteId(cardId);
+    };
+
+    const confirmDelete = () => {
+        if (deletingNoteId) {
+            const updatedCards = cards.filter(card => card.id !== deletingNoteId);
+            setCards(updatedCards);
+            setDisplayedCards(updatedCards);
+            setDeletingNoteId(null);
+        }
+    };
+
+    const handleSaveNote = (updatedNote) => {
+        const updatedCards = cards.map(card =>
+            card.id === updatedNote.id ? updatedNote : card
+        );
+        setCards(updatedCards);
+        setDisplayedCards(updatedCards);
+        setEditingNote(null);
+    };
+
+    const handleShareSuccess = (message) => {
+        setSharingNote(null);
+        setShareSuccessMessage(message);
+    };
 
     const formatDate = (date) => {
         if (!date) return 'Data';
@@ -47,7 +98,7 @@ function MainContent() {
         setShowCalendar(false);
 
         const dateToFilter = formatDate(date);
-        const filteredCards = CARDS_DATA.filter(card => {
+        const filteredCards = cards.filter(card => {
             const cardDate = card.dateInfo.split(' ')[0];
             return cardDate === dateToFilter;
         });
@@ -57,7 +108,7 @@ function MainContent() {
     const clearDateFilter = (e) => {
         e.stopPropagation();
         setSelectedDate(null);
-        setDisplayedCards(CARDS_DATA);
+        setDisplayedCards(cards);
     };
 
     return (
@@ -105,9 +156,57 @@ function MainContent() {
 
             <div className="content-center">
                 {displayedCards.map(card => (
-                    <Card key={card.id} data={card} />
+                    <Card
+                        key={card.id}
+                        data={card}
+                        onLike={handleLike}
+                        onDelete={handleDeleteRequest}
+                        onEdit={(note) => setEditingNote(note)}
+                        onShare={(note) => setSharingNote(note)}
+                    />
                 ))}
             </div>
+
+            {editingNote && (
+                <PopupMenu title="Editar Nota" onClose={() => setEditingNote(null)} size="medium">
+                    <EditNotePopup
+                        note={editingNote}
+                        onSave={handleSaveNote}
+                        onClose={() => setEditingNote(null)}
+                    />
+                </PopupMenu>
+            )}
+
+            {sharingNote && (
+                <PopupMenu title="Compartilhar Nota" onClose={() => setSharingNote(null)} size="small">
+                    <SharePopup
+                        note={sharingNote}
+                        onClose={() => setSharingNote(null)}
+                        onShared={handleShareSuccess}
+                    />
+                </PopupMenu>
+            )}
+
+            {deletingNoteId && (
+                <PopupMenu title="Confirmar Exclusão" onClose={() => setDeletingNoteId(null)} size="small">
+                    <ConfirmPopup
+                        message="Deseja realmente excluir esta nota?"
+                        warning="Esta ação não pode ser desfeita."
+                        onConfirm={confirmDelete}
+                        onCancel={() => setDeletingNoteId(null)}
+                        confirmText="Excluir"
+                    />
+                </PopupMenu>
+            )}
+
+            {shareSuccessMessage && (
+                <PopupMenu title="Sucesso" onClose={() => setShareSuccessMessage('')} size="small">
+                    <InfoPopup
+                        message={shareSuccessMessage}
+                        onClose={() => setShareSuccessMessage('')}
+                    />
+                </PopupMenu>
+            )}
         </div>
     );
 }

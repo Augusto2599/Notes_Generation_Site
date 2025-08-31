@@ -1,0 +1,55 @@
+.confirm-popup {
+    text-align: center;
+    padding: 1rem;
+}
+
+.confirm-icon {
+    font-size: 2.5rem;
+    color: #f0ad4e; /* Amarelo/Laranja para alerta */
+    margin-bottom: 1rem;
+}
+
+.confirm-message {
+    font-size: 1.125rem;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.confirm-warning {
+    font-size: 0.875rem;
+    color: #777;
+    margin-bottom: 1.5rem;
+}
+
+.confirm-popup .popup-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.confirm-popup .btn {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.confirm-popup .btn-cancel {
+    background-color: #f1f1f1;
+    color: #555;
+}
+.confirm-popup .btn-cancel:hover {
+    background-color: #e1e1e1;
+}
+
+.confirm-popup .btn-confirm-delete {
+    background-color: #e74c3c;
+    color: white;
+}
+.confirm-popup .btn-confirm-delete:hover {
+    background-color: #c0392b;
+}

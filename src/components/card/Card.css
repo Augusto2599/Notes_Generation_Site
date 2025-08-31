@@ -80,3 +80,11 @@
 .action-btn:hover {
     color: #3498db;
 }
+
+.action-btn.liked {
+    color: #e74c3c;
+}
+
+.action-btn.liked:hover {
+    color: #c0392b;
+}

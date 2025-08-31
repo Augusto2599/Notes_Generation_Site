@@ -1,0 +1,79 @@
+.edit-note-popup .form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+}
+
+.edit-note-popup label {
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #555;
+}
+
+.edit-note-popup input,
+.edit-note-popup textarea {
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 0.5rem;
+    font-size: 0.9375rem;
+    outline-color: #3498db;
+    width: 100%;
+    resize: vertical;
+}
+
+.color-options {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 0.25rem;
+}
+
+.color-swatch {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid #eee;
+    transition: transform 0.2s;
+}
+
+.color-swatch:hover {
+    transform: scale(1.1);
+}
+
+.color-swatch.selected {
+    border-color: #3498db;
+    box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+}
+
+.popup-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+}
+
+.popup-actions .btn {
+    padding: 0.75rem 1.25rem;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.popup-actions .btn-save {
+    background-color: #3498db;
+    color: white;
+}
+.popup-actions .btn-save:hover {
+    background-color: #2980b9;
+}
+
+.popup-actions .btn-cancel {
+    background-color: #f1f1f1;
+    color: #555;
+}
+.popup-actions .btn-cancel:hover {
+    background-color: #e1e1e1;
+}
