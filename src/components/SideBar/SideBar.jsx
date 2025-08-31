@@ -2,26 +2,29 @@ import React, { useState } from 'react';
 import Calendar from '../Calendar/Calendar';
 import ActivityChart from '../ActivityChart/ActivityChart';
 import PopupMenu from '../PopupMenu/PopupMenu';
-import SettingsPopupContent from '../SettingsPopupContent/SettingsPopupContent'; // Importar novo componente
+import SettingsPopupContent from '../SettingsPopupContent/SettingsPopupContent';
+import NotificationsPopupContent from '../NotificationsPopupContent/NotificationsPopupContent';
 import './SideBar.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBell, faCog, faUserFriends } from '@fortawesome/free-solid-svg-icons';
 
 function SideBar() {
-    const [activePopup, setActivePopup] = useState(null);
+    const [activePopup, setActivePopup] = useState(null); // Controla qual popup está visível
 
+    // Função para abrir um popup
     const handleIconClick = (popupName) => {
         setActivePopup(popupName);
     };
 
+    // Função para fechar qualquer popup
     const handleClosePopup = () => {
         setActivePopup(null);
     };
 
     return (
         <>
+            {/* O componente principal da sidebar */}
             <div className="side-bar">
-                {/* ... (código da SideBar não muda) ... */}
                 <div className="header-actions">
                     <FontAwesomeIcon
                         icon={faBell}
@@ -34,7 +37,7 @@ function SideBar() {
                         onClick={() => handleIconClick('settings')}
                     />
                 </div>
-                {/* ... (resto do código da SideBar) ... */}
+
                 <div className="user-profile">
                     <div className="user-avatar">U</div>
                     <div className="user-name">Usuário Exemplo</div>
@@ -55,14 +58,17 @@ function SideBar() {
                 <ActivityChart />
             </div>
 
+            {/* Renderização condicional dos Popups */}
+
+            {/* Popup de Notificações */}
             {activePopup === 'notifications' && (
-                <PopupMenu title="Notificações" onClose={handleClosePopup} size="small">
-                    <p>Nenhuma notificação nova no momento.</p>
+                <PopupMenu title="Notificações" onClose={handleClosePopup} size="medium">
+                    <NotificationsPopupContent />
                 </PopupMenu>
             )}
 
+            {/* Popup de Configurações */}
             {activePopup === 'settings' && (
-                // Usar o novo componente e o novo tamanho 'large'
                 <PopupMenu title="Configurações" onClose={handleClosePopup} size="large">
                     <SettingsPopupContent />
                 </PopupMenu>

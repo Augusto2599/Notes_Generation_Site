@@ -1,0 +1,62 @@
+.notifications-popup-container {
+    width: 100%;
+}
+
+.notifications-tabs {
+    display: flex;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 1rem;
+}
+
+.tab-btn {
+    flex: 1;
+    padding: 0.75rem 0.5rem;
+    background: none;
+    border: none;
+    border-bottom: 3px solid transparent;
+    cursor: pointer;
+    font-size: 0.9375rem; /* 15px */
+    font-weight: 500;
+    color: #777;
+    transition: all 0.3s;
+}
+
+.tab-btn:hover {
+    background-color: #f9f9f9;
+}
+
+.tab-btn.active {
+    color: #3498db;
+    border-bottom-color: #3498db;
+    font-weight: 600;
+}
+
+.notifications-content {
+    max-height: 18.75rem; /* 300px */
+    overflow-y: auto;
+}
+
+.notifications-list.empty {
+    text-align: center;
+    padding: 2rem;
+    color: #999;
+}
+
+.notification-item {
+    padding: 0.75rem 0.25rem;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.notification-item:last-child {
+    border-bottom: none;
+}
+
+.notification-text {
+    margin: 0 0 0.375rem 0; /* 0 0 6px 0 */
+    color: #333;
+}
+
+.notification-time {
+    font-size: 0.8125rem; /* 13px */
+    color: #999;
+}
