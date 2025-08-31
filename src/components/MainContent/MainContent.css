@@ -1,0 +1,107 @@
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 1.25rem 9.375rem;
+    overflow-y: auto;
+}
+
+.content-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.25rem;
+    margin-bottom: 1.875rem;
+    background-color: white;
+    padding: 0.9375rem 1.25rem;
+    border-radius: 0.625rem;
+    box-shadow: 0 0.25rem 0.375rem rgba(0, 0, 0, 0.1);
+}
+
+.filters {
+    display: flex;
+    align-items: center;
+    gap: 0.9375rem;
+}
+
+.filter-btn {
+    background-color: #f0f2f5;
+    border: none;
+    padding: 0.625rem 0.9375rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s;
+    position: relative;
+}
+
+.filter-btn:hover {
+    background-color: #e4e6eb;
+}
+
+.filter-btn.filter-active {
+    padding-right: 2rem;
+}
+
+.clear-filter-icon {
+    margin-left: 0.5rem;
+    color: #777;
+    font-size: 0.75rem;
+}
+
+.clear-filter-icon:hover {
+    color: #333;
+}
+
+.filter-container {
+    position: relative;
+    display: inline-block;
+}
+
+.calendar-popup {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 10;
+    margin-top: 5px;
+    width: 300px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 0.625rem;
+    overflow: hidden;
+}
+
+.calendar-popup .calendar {
+    margin-bottom: 0;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    background-color: #f0f2f5;
+    padding: 0.625rem 0.9375rem;
+    border-radius: 1.25rem;
+    width: 18.75rem;
+}
+
+.search-bar input {
+    border: none;
+    background: transparent;
+    outline: none;
+    margin-left: 0.625rem;
+    width: 100%;
+}
+
+.content-center {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(18.75rem, 1fr));
+    gap: 1.25rem;
+    margin-bottom: 1.875rem;
+}
+
+@media (max-width: 1200px) {
+    .main-content {
+        padding: 1.25rem 2.5rem;
+    }
+}

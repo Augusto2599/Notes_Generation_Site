@@ -17,17 +17,17 @@
     margin-bottom: 0.9375rem; /* 15px / 16 */
 }
 
-.card-titulo {
+.card-title {
     font-size: 1.125rem; /* 18px / 16 */
     font-weight: 600;
 }
 
-.usuario-info {
+.user-info {
     display: flex;
     align-items: center;
 }
 
-.usuario-icone {
+.user-icon {
     width: 1.875rem; /* 30px / 16 */
     height: 1.875rem; /* 30px / 16 */
     background-color: #3498db;
@@ -39,7 +39,7 @@
     font-weight: bold;
 }
 
-.card-texto {
+.card-text {
     margin-bottom: 1.25rem; /* 20px / 16 */
     line-height: 1.5;
     color: #555;
@@ -49,11 +49,13 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-top: 0.0625rem solid #eee; /* 1px / 16 */
-    padding-top: 0.9375rem; /* 15px / 16 */
+    border-top: 0.0625rem solid #eee;
+    /* 1px / 16 */
+    padding-top: 0.9375rem;
+    /* 15px / 16 */
 }
 
-.data-info {
+.date-info {
     display: flex;
     align-items: center;
     gap: 0.3125rem; /* 5px / 16 */
@@ -61,12 +63,13 @@
     font-size: 0.875rem; /* 14px / 16 */
 }
 
-.acoes {
+.card-actions {
     display: flex;
-    gap: 0.9375rem; /* 15px / 16 */
+    gap: 0.9375rem;
+    /* 15px / 16 */
 }
 
-.acao-btn {
+.action-btn {
     background: none;
     border: none;
     cursor: pointer;
@@ -74,6 +77,6 @@
     transition: color 0.3s;
 }
 
-.acao-btn:hover {
+.action-btn:hover {
     color: #3498db;
 }

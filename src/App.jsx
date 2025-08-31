@@ -1,14 +1,14 @@
-import './App.css'; // Podemos criar um App.css para o layout principal
-import MenuLateral from './components/menuLateral/MenuLateral';
-import ConteudoPrincipal from './components/conteudoPrincipal/ConteudoPrincipal';
-import BarraLateral from './components/barraLateral/BarraLateral';
+import './App.css';
+import NavBar from './components/NavBar/NavBar';
+import MainContent from './components/MainContent/MainContent';
+import SideBar from './components/SideBar/SideBar';
 
 function App() {
   return (
     <div className="app-container">
-      <MenuLateral />
-      <ConteudoPrincipal />
-      <BarraLateral />
+      <NavBar />
+      <MainContent />
+      <SideBar />
     </div>
   );
 }
