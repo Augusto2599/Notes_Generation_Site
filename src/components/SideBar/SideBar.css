@@ -22,7 +22,7 @@
 
 .header-icon {
     font-size: 1.25rem;
-    cursor: pointer;
+    cursor: pointer; /* Adicionado */
     color: #777;
     transition: color 0.3s;
 }
