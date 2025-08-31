@@ -71,16 +71,22 @@
     border-radius: 0.625rem; /* 10px / 16 */
     margin-bottom: 1.25rem; /* 20px / 16 */
     width: 100%;
-    text-align: center;
 }
 
 .amigos-titulo {
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 0.625rem; /* 10px / 16 */
-    margin-bottom: 0.9375rem; /* 15px / 16 */
+    /* Esta propriedade separa os dois grupos (label e número) para os lados opostos */
+    justify-content: space-between; 
+    width: 100%;
     font-weight: 600;
+}
+
+/* Nova classe para estilizar o grupo do ícone e texto */
+.amigos-label {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem; /* Espaço entre o ícone e o texto "Amigos" */
 }
 
 .numero-amigos {
@@ -90,7 +96,6 @@
     border-radius: 0.625rem; /* 10px / 16 */
     font-size: 0.75rem; /* 12px / 16 */
 }
-
 /* --- Media Query para Telas Menores (VERSÃO CORRIGIDA) --- */
 @media (max-width: 1200px) {
     .barra-lateral {

@@ -1,7 +1,8 @@
 import React from 'react';
-import Calendario from '../Calendario/Calendario';
+import Calendario from '../calendario/Calendario';
 import GraficoAtividade from '../GraficoAtividade/GraficoAtividade';
 import './BarraLateral.css';
+// AQUI ESTÁ A CORREÇÃO: troquei '@fortawesome/fontawesome-svg-core' por '@fortawesome/react-fontawesome'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBell, faCog, faUserFriends } from '@fortawesome/free-solid-svg-icons';
 
@@ -21,8 +22,10 @@ function BarraLateral() {
 
             <div className="amigos">
                 <div className="amigos-titulo">
-                    <FontAwesomeIcon icon={faUserFriends} />
-                    <span>Amigos</span>
+                    <div className="amigos-label">
+                        <FontAwesomeIcon icon={faUserFriends} />
+                        <span>Amigos</span>
+                    </div>
                     <div className="numero-amigos">128</div>
                 </div>
             </div>
