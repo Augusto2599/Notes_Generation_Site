@@ -1,0 +1,100 @@
+.friends-popup-container {
+    width: 100%;
+}
+
+.friends-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    /* Espaçamento entre os itens da lista */
+    max-height: 25rem;
+    /* Altura máxima para a lista rolável */
+    overflow-y: auto;
+    padding-right: 0.5rem;
+    /* Espaço para a barra de rolagem */
+}
+
+.friend-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    background-color: #f9f9f9;
+    border: 1px solid #f0f0f0;
+}
+
+.friend-info {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-basis: 40%;
+    /* Largura da seção de informação */
+}
+
+.friend-list-avatar {
+    width: 2.5rem;
+    /* 40px */
+    height: 2.5rem;
+    /* 40px */
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.friend-name {
+    font-weight: 600;
+    font-size: 0.9375rem;
+    /* 15px */
+    color: #333;
+}
+
+.friend-activity {
+    flex-basis: 35%;
+    /* Largura da seção de atividade */
+    text-align: center;
+    font-size: 0.8125rem;
+    /* 13px */
+    color: #777;
+}
+
+.friend-status {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-basis: 20%;
+    /* Largura da seção de status */
+    justify-content: flex-end;
+}
+
+.status-indicator {
+    width: 0.625rem;
+    /* 10px */
+    height: 0.625rem;
+    /* 10px */
+    border-radius: 50%;
+}
+
+/* Cores para os diferentes status */
+.status-indicator.status-online {
+    background-color: #2ecc71;
+    /* Verde */
+}
+
+.status-indicator.status-away {
+    background-color: #f1c40f;
+    /* Amarelo */
+}
+
+.status-indicator.status-offline {
+    background-color: #95a5a6;
+    /* Cinza */
+}
+
+.status-text {
+    font-size: 0.875rem;
+    /* 14px */
+    font-weight: 500;
+    text-transform: capitalize;
+    /* Deixa a primeira letra maiúscula */
+    color: #555;
+}
