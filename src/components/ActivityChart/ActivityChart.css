@@ -1,25 +1,92 @@
 .activity-section {
-    background-color: #f0f2f5;
-    padding: 0.75rem;
-    border-radius: 0.625rem;
+    background-color: #ffffff;
+    padding: 1rem;
+    border-radius: 0.75rem;
     width: 100%;
+    border: 1px solid #e0e0e0;
+}
+
+.activity-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.activity-title-section {
+    display: flex;
+    flex-direction: column;
 }
 
 .activity-title {
-    font-weight: 600;
-    margin-bottom: 0.625rem;
-    text-align: center;
+    font-weight: 700;
+    font-size: 1.125rem;
+    color: #2c3e50;
+    margin-bottom: 0.25rem;
+    text-align: left;
 }
 
+.activity-stats {
+    font-size: 0.8125rem;
+    color: #27ae60;
+}
+
+/* Container para o dropdown */
+.dropdown-container {
+    position: relative;
+    display: inline-block;
+}
+
+.weekly-dropdown {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    border: 1px solid #e0e0e0;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    cursor: pointer;
+    background-color: #fff;
+    transition: background-color 0.2s;
+}
+
+.dropdown-container:hover .weekly-dropdown {
+    background-color: #f9f9f9;
+}
+
+/* Estilo do menu dropdown */
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+    width: 100%;
+    overflow: hidden;
+    margin-top: 0.25rem;
+}
+
+.dropdown-item {
+    padding: 0.75rem 1rem;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.dropdown-item:hover {
+    background-color: #f0f2f5;
+}
+
+
 .usage-time {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: #2c3e50;
-    margin-bottom: 0.625rem;
-    text-align: center;
+    display: none;
 }
 
 .chart-container {
-    height: 8rem;
-    margin-top: 2.5rem;
+    height: 9.375rem;
+    margin-top: 0;
+    position: relative;
 }

@@ -42,7 +42,9 @@
 }
 
 .filter-btn.filter-active {
-    padding-right: 2rem;
+    background-color: #dbeafe;
+    color: #3498db;
+    font-weight: 500;
 }
 
 .clear-filter-icon {

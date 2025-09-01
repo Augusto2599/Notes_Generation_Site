@@ -10,7 +10,7 @@
     max-height: 100rem;
     margin-block: auto;
     border-radius: 1.25rem;
-    margin-right: 0.5rem; /* ADICIONADO: Afastamento para desktop */
+    margin-right: 0.5rem;
 }
 
 .header-actions {
@@ -23,7 +23,7 @@
 
 .header-icon {
     font-size: 1.25rem;
-    cursor: pointer; /* Adicionado */
+    cursor: pointer;
     color: #777;
     transition: color 0.3s;
 }
@@ -59,6 +59,7 @@
 
 .user-id {
     font-size: 0.8125rem;
+    color: #777;
 }
 
 .friends-section {
@@ -67,13 +68,23 @@
     border-radius: 0.625rem;
     margin-bottom: 1.25rem;
     width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    /* Adicionado para indicar que é clicável */
+    transition: background-color 0.2s;
+}
+
+.friends-section:hover {
+    background-color: #e4e6eb;
 }
 
 .friends-header {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    width: 100%;
+    gap: 0.5rem;
+    width: auto;
     font-weight: 600;
 }
 
@@ -91,11 +102,30 @@
     font-size: 0.75rem;
 }
 
+.online-friends {
+    display: flex;
+    align-items: center;
+}
+
+.friend-avatar {
+    width: 1.75rem;
+    height: 1.75rem;
+    border-radius: 50%;
+    border: 2px solid #f0f2f5;
+    margin-left: -0.75rem;
+    object-fit: cover;
+    background-color: #ccc;
+}
+
+.friend-avatar:first-child {
+    margin-left: 0;
+}
+
 @media (max-width: 1200px) {
     .side-bar {
         position: fixed;
         z-index: 1000;
-        right: -0.5rem; /* ALTERADO: de '0' para '1rem' */
+        right: -0.5rem;
         top: 50%;
         transition: transform 0.3s ease-in-out;
         transform: translate(calc(100% - 15px), -50%);
