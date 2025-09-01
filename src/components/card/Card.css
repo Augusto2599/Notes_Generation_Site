@@ -106,3 +106,10 @@
 .action-btn.liked:hover {
     color: #c0392b;
 }
+
+/* --- ALTERAÇÕES PARA DISPOSITIVOS MÓVEIS --- */
+@media (max-width: 768px) {
+    .card {
+        width: auto; /* Permite que o card se ajuste à largura da coluna do grid */
+    }
+}

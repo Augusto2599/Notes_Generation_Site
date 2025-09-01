@@ -17,7 +17,16 @@
     font-weight: 600;
     font-size: 1rem;
     text-transform: capitalize;
+    cursor: pointer; /* Adicionado para indicar que é clicável */
+    padding: 0.3125rem;
+    border-radius: 0.3125rem;
+    transition: background-color 0.2s;
 }
+
+.month-year-title:hover {
+    background-color: #e0e0e0;
+}
+
 
 .nav-btn {
     background: none;
@@ -74,4 +83,26 @@
     background-color: #3498db;
     color: white;
     font-weight: bold;
+}
+
+/* --- NOVOS ESTILOS PARA VISUALIZAÇÃO DE MÊS/ANO --- */
+
+.calendar-grid-large {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 colunas para meses/anos */
+    gap: 0.5rem;
+}
+
+.calendar-cell {
+    padding: 0.75rem 0.25rem;
+    text-align: center;
+    border-radius: 0.3125rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    font-size: 0.875rem;
+    text-transform: capitalize;
+}
+
+.calendar-cell:hover {
+    background-color: #e0e0e0;
 }
