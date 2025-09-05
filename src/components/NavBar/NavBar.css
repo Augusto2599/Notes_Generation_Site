@@ -7,11 +7,17 @@
     align-items: center;
     justify-content: center;
     padding: 1.875rem 0;
-    transition: width 0.3s, transform 0.3s ease-in-out; /* Adicionada transição de 'transform' */
-    max-height: 25rem;
-    margin-block: auto;
     border-radius: 1.25rem;
-    margin-left: 0.5rem; /* ADICIONADO: Afastamento para desktop */
+    
+    /* --- ALTERAÇÕES PRINCIPAIS --- */
+    /* Posicionamento fixo para que o menu flutue sobre o conteúdo */
+    position: fixed;
+    left: 0.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1000; /* Z-index alto para garantir que fique na frente */
+    transition: width 0.3s ease-in-out; /* Transição apenas na largura */
+    max-height: 25rem;
 }
 
 .nav-bar:hover {
@@ -54,6 +60,8 @@
     display: inline-block;
 }
 
+/* A lógica de @media não é mais necessária para o posicionamento,
+   pois o menu agora é 'fixed' em todas as resoluções. */
 @media (max-width: 1200px) {
     .nav-bar {
         position: fixed;

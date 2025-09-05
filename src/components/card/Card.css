@@ -33,6 +33,7 @@
     margin-left: 0.75rem; /* 12px */
 }
 
+/* --- ESTILOS PARA AVATAR ÚNICO E EMPILHADO --- */
 .user-icon {
     width: 2rem; /* 32px */
     height: 2rem; /* 32px */
@@ -44,14 +45,39 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden; /* Garante que a imagem não saia do círculo */
-    flex-shrink: 0; /* Impede que o ícone diminua */
+    overflow: hidden;
+    flex-shrink: 0;
+    border: 2px solid white; /* Borda para todos os avatares */
+    box-sizing: border-box; /* Garante que padding e border sejam incluídos na largura/altura */
 }
 
 .user-icon img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Garante que a imagem cubra o espaço sem distorcer */
+    object-fit: cover;
+}
+
+.stacked-avatars {
+    display: flex; /* Usar flexbox para posicionamento */
+    position: relative;
+    width: 3.25rem; /* Ajuste para acomodar a sobreposição */
+    height: 2rem;
+    align-items: center;
+    justify-content: flex-end; /* Alinha os itens à direita do contêiner */
+}
+
+.stacked-avatars .user-icon {
+    position: absolute;
+}
+
+.stacked-avatars .creator-avatar { /* Avatar da frente */
+    right: 0;
+    z-index: 2;
+}
+
+.stacked-avatars .saved-by-avatar { /* Avatar de trás */
+    right: 1.25rem; /* Desloca para a esquerda para sobrepor */
+    z-index: 1;
 }
 
 
@@ -84,6 +110,7 @@
 .card-actions {
     display: flex;
     gap: 0.5rem; /* 8px */
+    align-items: center; /* Alinha todos os botões verticalmente */
 }
 
 .action-btn {
@@ -95,21 +122,26 @@
     transition: color 0.2s ease-in-out;
 }
 
-.action-btn:hover {
-    color: #333;
+.action-btn:hover { color: #333; }
+.action-btn.liked { color: #e74c3c; }
+.action-btn.liked:hover { color: #c0392b; }
+.action-btn.saved { color: #3498db; }
+.action-btn.saved:hover { color: #2980b9; }
+
+.like-container {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem; /* Espaço entre o coração e o número */
 }
 
-.action-btn.liked {
-    color: #e74c3c;
+.like-count {
+    font-size: 0.875rem; /* 14px */
+    color: #777;
+    font-weight: 500;
 }
 
-.action-btn.liked:hover {
-    color: #c0392b;
-}
-
-/* --- ALTERAÇÕES PARA DISPOSITIVOS MÓVEIS --- */
 @media (max-width: 768px) {
     .card {
-        width: auto; /* Permite que o card se ajuste à largura da coluna do grid */
+        width: auto;
     }
 }

@@ -2,10 +2,12 @@ import './NavBar.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome, faImages, faUsers, faFileAlt } from '@fortawesome/free-solid-svg-icons';
 
-function NavBar() {
+// Recebe a função 'setActivePage' como prop
+function NavBar({ setActivePage }) {
     return (
         <div className="nav-bar">
-            <div className="nav-item">
+            {/* O onClick agora chama a função para mudar a página */}
+            <div className="nav-item" onClick={() => setActivePage('home')}>
                 <FontAwesomeIcon icon={faHome} size="lg" />
                 <span>Home</span>
             </div>
@@ -17,7 +19,7 @@ function NavBar() {
                 <FontAwesomeIcon icon={faImages} size="lg" />
                 <span>Gallery</span>
             </div>
-            <div className="nav-item">
+            <div className="nav-item" onClick={() => setActivePage('community')}>
                 <FontAwesomeIcon icon={faUsers} size="lg" />
                 <span>Community</span>
             </div>

@@ -8,7 +8,7 @@
 
 .content-header {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     gap: 1.25rem;
     margin-bottom: 1.875rem;
@@ -65,8 +65,8 @@
 .calendar-popup {
     position: absolute;
     top: 100%;
-    left: 50%; /* ALTERADO: Alinha o início do popup no meio do container */
-    transform: translateX(-50%); /* ALTERADO: Move o popup para trás pela metade de sua largura para centralizar */
+    left: 50%;
+    transform: translateX(-50%);
     z-index: 10;
     margin-top: 5px;
     width: 300px;
@@ -112,12 +112,18 @@
 /* --- ALTERAÇÕES PARA DISPOSITIVOS MÓVEIS --- */
 @media (max-width: 768px) {
     .main-content {
-        padding: 3rem;
+        padding: 1.25rem;
     }
 
     .content-header {
-        flex-direction: column-reverse; 
+        /* MANTÉM a direção de coluna normal */
+        flex-direction: column;
         align-items: stretch; 
+    }
+
+    /* NOVA REGRA: Define a ordem visual da barra de pesquisa */
+    .content-header .search-bar {
+        order: -1; /* Faz com que este item seja exibido primeiro */
     }
 
     .search-bar {

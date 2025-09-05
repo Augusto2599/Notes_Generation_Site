@@ -11,50 +11,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart, faCalendar, faSearch, faUser, faTimes } from '@fortawesome/free-solid-svg-icons';
 
 const INITIAL_CARDS_DATA = [
-    {
-        id: 1,
-        userId: 2,
-        title: 'Ideias para Projeto',
-        userAvatar: 'https://i.pravatar.cc/32?u=user2',
-        text: 'Desenvolver um sistema de notas com funcionalidades de compartilhamento e colaboração em tempo real.',
-        dateInfo: '15/08/2023 10:30',
-        liked: false,
-        color: '#b3e5fc'
-    },
-    {
-        id: 2,
-        userId: 3,
-        title: 'Lista de Tarefas',
-        userAvatar: 'https://i.pravatar.cc/32?u=user3',
-        text: '- Finalizar relatório<br>- Reunião com equipe às 14h<br>- Revisar documentação',
-        dateInfo: '14/08/2023 16:45',
-        liked: true,
-        color: '#ffccd5'
-    },
-    {
-        id: 3,
-        userId: 4,
-        title: 'Reunião Importante',
-        userAvatar: 'https://i.pravatar.cc/32?u=user4',
-        text: 'Discutir as novas funcionalidades do sistema e definir prazos para a próxima sprint de desenvolvimento.',
-        dateInfo: '13/08/2023 09:15',
-        liked: false,
-        color: '#ffffff'
-    },
-    {
-        id: 4,
-        userId: 123456, // ID do usuário logado
-        title: 'Minha Anotação Pessoal',
-        userAvatar: null,
-        text: 'Esta é uma nota pessoal e deve mostrar meu avatar customizado.',
-        dateInfo: '31/08/2025 16:30',
-        liked: false,
-        color: '#c8e6c9'
-    }
+    { id: 1, userId: 2, title: 'Ideias para Projeto', userAvatar: 'https://i.pravatar.cc/32?u=user2', text: 'Desenvolver um sistema de notas com funcionalidades de compartilhamento e colaboração em tempo real.', dateInfo: '15/08/2023 10:30', liked: false, color: '#b3e5fc' },
+    { id: 2, userId: 3, title: 'Lista de Tarefas', userAvatar: 'https://i.pravatar.cc/32?u=user3', text: '- Finalizar relatório<br>- Reunião com equipe às 14h<br>- Revisar documentação', dateInfo: '14/08/2023 16:45', liked: true, color: '#ffccd5' },
+    { id: 3, userId: 4, title: 'Reunião Importante', userAvatar: 'https://i.pravatar.cc/32?u=user4', text: 'Discutir as novas funcionalidades do sistema e definir prazos para a próxima sprint de desenvolvimento.', dateInfo: '13/08/2023 09:15', liked: false, color: '#ffffff' },
+    { id: 4, userId: 123456, title: 'Minha Anotação Pessoal', userAvatar: null, text: 'Esta é uma nota pessoal e deve mostrar meu avatar customizado.', dateInfo: '31/08/2025 16:30', liked: false, color: '#c8e6c9' }
 ];
 
 function MainContent({ settings }) {
-    // Carrega os cards do localStorage ou usa os dados iniciais
     const [cards, setCards] = useState(() => {
         const savedCards = localStorage.getItem('notesData');
         return savedCards ? JSON.parse(savedCards) : INITIAL_CARDS_DATA;
@@ -75,20 +38,17 @@ function MainContent({ settings }) {
     const [deletingNoteId, setDeletingNoteId] = useState(null);
     const [shareSuccessMessage, setShareSuccessMessage] = useState('');
 
-    // Salva os cards no localStorage sempre que eles mudam
+    // ALTERAÇÃO: Este useEffect agora também recarrega os dados do localStorage
+    // se o componente for re-renderizado (por exemplo, ao voltar da página da comunidade)
+    useEffect(() => {
+        const savedCards = localStorage.getItem('notesData');
+        const currentCards = savedCards ? JSON.parse(savedCards) : INITIAL_CARDS_DATA;
+        setCards(currentCards);
+    }, []); // Executa apenas uma vez na montagem inicial
+
     useEffect(() => {
         localStorage.setItem('notesData', JSON.stringify(cards));
-    }, [cards]);
-
-    const formatDate = (date) => {
-        if (!date) return 'Data';
-        const day = String(date.getDate()).padStart(2, '0');
-        const month = String(date.getMonth() + 1).padStart(2, '0');
-        const year = date.getFullYear();
-        return `${day}/${month}/${year}`;
-    };
-
-    useEffect(() => {
+        
         let filteredCards = [...cards];
         if (showLiked) {
             filteredCards = filteredCards.filter(card => card.liked);
@@ -102,10 +62,7 @@ function MainContent({ settings }) {
         }
         if (searchQuery.trim() !== '') {
             const lowercasedQuery = searchQuery.toLowerCase();
-            const stripHtml = (html) => {
-                const doc = new DOMParser().parseFromString(html, 'text/html');
-                return doc.body.textContent || "";
-            }
+            const stripHtml = (html) => new DOMParser().parseFromString(html, 'text/html').body.textContent || "";
             filteredCards = filteredCards.filter(card =>
                 card.title.toLowerCase().includes(lowercasedQuery) ||
                 stripHtml(card.text).toLowerCase().includes(lowercasedQuery)
@@ -114,6 +71,14 @@ function MainContent({ settings }) {
         setDisplayedCards(filteredCards);
     }, [cards, showLiked, showUserNotes, selectedDate, searchQuery]);
 
+
+    const formatDate = (date) => {
+        if (!date) return 'Data';
+        const day = String(date.getDate()).padStart(2, '0');
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const year = date.getFullYear();
+        return `${day}/${month}/${year}`;
+    };
 
     const handleLike = (cardId) => {
         const updatedCards = cards.map(card =>
@@ -162,45 +127,20 @@ function MainContent({ settings }) {
         <div className="main-content">
             <div className="content-header">
                 <div className="filters">
-                    <button className={`filter-btn ${showLiked ? 'filter-active' : ''}`} onClick={handleLikeFilter}>
-                        <FontAwesomeIcon icon={faHeart} />
-                        <span>Likes</span>
-                    </button>
-                    <div
-                        className="filter-container"
-                        onMouseEnter={() => setShowCalendar(true)}
-                        onMouseLeave={() => setShowCalendar(false)}
-                    >
+                    <button className={`filter-btn ${showLiked ? 'filter-active' : ''}`} onClick={handleLikeFilter}><FontAwesomeIcon icon={faHeart} /><span>Likes</span></button>
+                    <div className="filter-container" onMouseEnter={() => setShowCalendar(true)} onMouseLeave={() => setShowCalendar(false)}>
                         <button className={`filter-btn ${selectedDate ? 'filter-active' : ''}`}>
                             <FontAwesomeIcon icon={faCalendar} />
                             <span>{formatDate(selectedDate)}</span>
-                            {selectedDate && (
-                                <FontAwesomeIcon
-                                    icon={faTimes}
-                                    className="clear-filter-icon"
-                                    onClick={clearDateFilter}
-                                />
-                            )}
+                            {selectedDate && <FontAwesomeIcon icon={faTimes} className="clear-filter-icon" onClick={clearDateFilter} />}
                         </button>
-                        {showCalendar && (
-                            <div className="calendar-popup">
-                                <Calendar onDateSelect={handleDateSelect} />
-                            </div>
-                        )}
+                        {showCalendar && <div className="calendar-popup"><Calendar onDateSelect={handleDateSelect} /></div>}
                     </div>
-                    <button className={`filter-btn ${showUserNotes ? 'filter-active' : ''}`} onClick={handleNoteFilter}>
-                        <FontAwesomeIcon icon={faUser} />
-                        <span>Note</span>
-                    </button>
+                    <button className={`filter-btn ${showUserNotes ? 'filter-active' : ''}`} onClick={handleNoteFilter}><FontAwesomeIcon icon={faUser} /><span>Note</span></button>
                 </div>
                 <div className="search-bar">
                     <FontAwesomeIcon icon={faSearch} />
-                    <input
-                        type="text"
-                        placeholder="Search notes..."
-                        value={searchQuery}
-                        onChange={(e) => setSearchQuery(e.target.value)}
-                    />
+                    <input type="text" placeholder="Search notes..." value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
                 </div>
             </div>
             <div className="content-center">
@@ -210,6 +150,7 @@ function MainContent({ settings }) {
                         <Card
                             key={card.id}
                             data={card}
+                            pageType="home"
                             onLike={handleLike}
                             onDelete={handleDeleteRequest}
                             onEdit={(note) => setEditingNote(note)}
@@ -219,26 +160,10 @@ function MainContent({ settings }) {
                     );
                 })}
             </div>
-            {editingNote && (
-                <PopupMenu title="Editar Nota" onClose={() => setEditingNote(null)} size="medium">
-                    <EditNotePopup note={editingNote} onSave={handleSaveNote} onClose={() => setEditingNote(null)} />
-                </PopupMenu>
-            )}
-            {sharingNote && (
-                <PopupMenu title="Compartilhar Nota" onClose={() => setSharingNote(null)} size="small">
-                    <SharePopup note={sharingNote} onClose={() => setSharingNote(null)} onShared={handleShareSuccess} />
-                </PopupMenu>
-            )}
-            {deletingNoteId && (
-                <PopupMenu title="Confirmar Exclusão" onClose={() => setDeletingNoteId(null)} size="small">
-                    <ConfirmPopup message="Deseja realmente excluir esta nota?" warning="Esta ação não pode ser desfeita." onConfirm={confirmDelete} onCancel={() => setDeletingNoteId(null)} confirmText="Excluir" />
-                </PopupMenu>
-            )}
-            {shareSuccessMessage && (
-                <PopupMenu title="Sucesso" onClose={() => setShareSuccessMessage('')} size="small">
-                    <InfoPopup message={shareSuccessMessage} onClose={() => setShareSuccessMessage('')} />
-                </PopupMenu>
-            )}
+            {editingNote && <PopupMenu title="Editar Nota" onClose={() => setEditingNote(null)} size="medium"><EditNotePopup note={editingNote} onSave={handleSaveNote} onClose={() => setEditingNote(null)} /></PopupMenu>}
+            {sharingNote && <PopupMenu title="Compartilhar Nota" onClose={() => setSharingNote(null)} size="small"><SharePopup note={sharingNote} onClose={() => setSharingNote(null)} onShared={handleShareSuccess} /></PopupMenu>}
+            {deletingNoteId && <PopupMenu title="Confirmar Exclusão" onClose={() => setDeletingNoteId(null)} size="small"><ConfirmPopup message="Deseja realmente excluir esta nota?" warning="Esta ação não pode ser desfeita." onConfirm={confirmDelete} onCancel={() => setDeletingNoteId(null)} confirmText="Excluir" /></PopupMenu>}
+            {shareSuccessMessage && <PopupMenu title="Sucesso" onClose={() => setShareSuccessMessage('')} size="small"><InfoPopup message={shareSuccessMessage} onClose={() => setShareSuccessMessage('')} /></PopupMenu>}
         </div>
     );
 }

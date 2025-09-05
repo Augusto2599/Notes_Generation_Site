@@ -3,6 +3,7 @@ import './App.css';
 import NavBar from './components/NavBar/NavBar';
 import MainContent from './components/MainContent/MainContent';
 import SideBar from './components/SideBar/SideBar';
+import CommunityPage from './components/CommunityPage/CommunityPage'; // Importa a nova página
 
 function App() {
   const [userSettings, setUserSettings] = useState({
@@ -10,6 +11,9 @@ function App() {
     avatar: null,
     // Outras configurações podem ser adicionadas aqui
   });
+
+  // Novo estado para controlar a página ativa
+  const [activePage, setActivePage] = useState('home');
 
   // Carrega as configurações do usuário do localStorage quando a aplicação inicia
   useEffect(() => {
@@ -25,11 +29,27 @@ function App() {
     setUserSettings(newSettings);
   };
 
+  // Renderiza o conteúdo da página com base no estado 'activePage'
+  const renderPage = () => {
+    switch (activePage) {
+      case 'community':
+        return <CommunityPage settings={userSettings} />;
+      case 'home':
+      default:
+        return (
+          <>
+            <MainContent settings={userSettings} />
+            <SideBar settings={userSettings} onSave={handleSaveSettings} />
+          </>
+        );
+    }
+  };
+
   return (
     <div className="app-container">
-      <NavBar />
-      <MainContent settings={userSettings} />
-      <SideBar settings={userSettings} onSave={handleSaveSettings} />
+      {/* Passa a função para alterar a página para o NavBar */}
+      <NavBar setActivePage={setActivePage} />
+      {renderPage()}
     </div>
   );
 }
